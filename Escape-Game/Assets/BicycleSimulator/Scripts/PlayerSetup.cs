@@ -9,6 +9,8 @@ public class PlayerSetup : NetworkBehaviour
 
     Camera sceneCamera;
 
+    GameObject[] player;
+
     void Start()
     {
         Physics.gravity = new Vector3(0, -500F, 0);
@@ -25,6 +27,22 @@ public class PlayerSetup : NetworkBehaviour
             if(sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);
+            }
+        }
+
+        if(!isServer)
+        {
+            if (player == null)
+                player = GameObject.FindGameObjectsWithTag("Player");
+
+            if (player.Length != 0)
+            {
+                Debug.Log(player.Length);
+            }
+
+            foreach (GameObject i in player)
+            {
+                NetworkServer.Destroy(i);
             }
         }
     }

@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8902699883211146384}
   m_Layer: 0
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.04761905
+  m_SendInterval: 0.05263158
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 200
+  health: 0
 --- !u!114 &1115058131075145801
 MonoBehaviour:
   m_ObjectHideFlags: 0

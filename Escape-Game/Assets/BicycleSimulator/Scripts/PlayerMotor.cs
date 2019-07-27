@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMotor : MonoBehaviour
@@ -14,6 +16,8 @@ public class PlayerMotor : MonoBehaviour
     private float distance;
     private Text txt;
     public float time = 200;
+
+    public int health;
 
     void Start()
     {
@@ -47,7 +51,20 @@ public class PlayerMotor : MonoBehaviour
         //txt.text = "Distancia: " + (int)distance + "m || Speedd: " + velocity + " km/h";
         PerformMovement();
         PerformRotation();
+        //if (!isServer)
+        //    return;
+
+        //RpcMove(health);
     }
+
+    /*[ClientRpc]
+    void RpcMove(int h)
+    {
+       rb.velocity = rb.transform.forward * h;
+        //PerformMovement();
+        //PerformRotation();
+    }
+    */
 
     void PerformMovement()
     {
@@ -56,8 +73,9 @@ public class PlayerMotor : MonoBehaviour
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         }
         */
-        distance += Mathf.Min(velocity, 5.0f) / 34;
+        distance += Mathf.Abs(Mathf.Min(velocity, 5.0f) / 34);
         rb.velocity = rb.transform.forward * velocity;
+        //rb.velocity = Vector3(0.0,0.0,5.0f);
     }
 
     void PerformRotation()
